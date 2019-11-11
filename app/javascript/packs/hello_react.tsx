@@ -1,29 +1,51 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-interface HelloProps {
+interface RegisterProps {
   name: string;
+  description: string;
 }
 
-// const Hello: React.SFC<HelloProps> = props => (
-//   <div>Hello {props.name}!</div>
-// )
-
-class Hello extends React.Component<{}, HelloProps> {
+class Register extends React.Component<{}, RegisterProps> {
   render() {
     return (
-      <div>Hello {this.props.name}!</div>
+      <div>
+        <div>name: {this.props.name}</div>
+        <div>description: {this.props.description}</div>
+      </div>
     )
   }
 }
 
-Hello.defaultProps = {
-  name: "David",
+interface MainProps {
+  chef: string;
 }
+
+// const Main: React.SFC<MainProps> = props => (
+//   <div>Main {props.name}!</div>
+// )
+
+class Main extends React.Component<{}, MainProps> {
+  render() {
+    return (
+      <div>
+        <div>chef: {this.props.chef}</div>
+        <Register
+          name = 'ハンバーグ'
+          description = '肉をこねる'
+        />
+      </div>
+    )
+  }
+}
+
+// Main.defaultProps = {
+//   chef: "David",
+// }
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
-    <Hello name="React" />,
+    <Main chef="Joe" />,
     document.body.appendChild(document.createElement("div")),
   )
 })
