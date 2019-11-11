@@ -5,9 +5,17 @@ interface HelloProps {
   name: string;
 }
 
-const Hello: React.SFC<HelloProps> = props => (
-  <div>Hello {props.name}!</div>
-)
+// const Hello: React.SFC<HelloProps> = props => (
+//   <div>Hello {props.name}!</div>
+// )
+
+class Hello extends React.Component<{}, HelloProps> {
+  render() {
+    return (
+      <div>Hello {this.props.name}!</div>
+    )
+  }
+}
 
 Hello.defaultProps = {
   name: "David",
