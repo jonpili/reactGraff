@@ -6,13 +6,26 @@ interface RegisterProps {
   description: string;
 }
 
-class Register extends React.Component<{}, RegisterProps> {
+class Register extends React.Component<{}, RegisterProps> {  
   render() {
     return (
-      <div>
+      <form>
+        <div>
+          <label>
+            Name:
+            <input type="text" name="name" />
+          </label>
+        </div>
+        <div>
+          <label>
+            Description:
+            <textarea name="description" />
+          </label>
+        </div>
+        <input type="submit" value="Submit" />
         <div>name: {this.props.name}</div>
         <div>description: {this.props.description}</div>
-      </div>
+      </form>
     )
   }
 }
