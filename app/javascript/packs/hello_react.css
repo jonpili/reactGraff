@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+}
+
+.register {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe-list {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+}
