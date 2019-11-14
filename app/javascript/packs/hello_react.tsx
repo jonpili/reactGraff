@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import './hello_react.css';
 
 interface RegisterProps {
-  name: string;
-  description: string;
   onClick: (name: string, description: string) => void;
 }
 
@@ -29,9 +28,30 @@ class Register extends React.Component<RegisterProps, {}> {
       //   <div>description: {this.props.description}</div>
       // </form>
       <div>
-        <button onClick={() => this.props.onClick('おにぎり', '愛でにぎる')}>レシピの確認</button>
-        <div>name: {this.props.name}</div>
-        <div>description: {this.props.description}</div>
+        <button onClick={() => this.props.onClick('おにぎり', '愛でにぎる')}>レシピの追加</button>
+      </div>
+    )
+  }
+}
+
+interface RecipeListProps {
+  recipes: {name: string, description: string}[];
+}
+
+class RecipeList extends React.Component<RecipeListProps, {}> {
+  render() {
+    return (
+      <div>
+        <table>
+          <thead>
+          <tr><th>料理名</th><th>作り方</th></tr>
+          </thead>
+          <tbody>
+          {this.props.recipes.map((recipe, index) => {
+            return <tr key={index}><td>{recipe.name}</td><td>{recipe.description}</td></tr>;
+          })}
+          </tbody>
+        </table>
       </div>
     )
   }
@@ -42,35 +62,44 @@ interface MainProps {
 }
 
 interface MainState {
-  name: string;
-  description: string;
+  recipes: {name: string, description: string}[];
 }
 
 class Main extends React.Component<MainProps, MainState> {
   constructor(props: Readonly<MainProps>) {
     super(props);
     this.state = {
-      name: 'オムライス',
-      description: '卵でつつむ'
+      recipes: [{name: 'オムライス', description: '卵でつつむ'}]
     };
   }
 
   handleClick(name: string, description: string) {
     this.setState({
-      name: name,
-      description: description
+      recipes: this.state.recipes.concat(
+        {
+          name: name,
+          description: description
+        }
+      )
     })
   }
 
   render() {
     return (
-      <div>
-        <div>chef: {this.props.chef}</div>
-        <Register
-          name = {this.state.name}
-          description = {this.state.description}
-          onClick = {(name, description) => this.handleClick(name, description)}
-        />
+      <div className="main">
+        <div className="register">
+          <div>
+            chef: {this.props.chef}
+          </div>
+          <Register
+            onClick = {(name, description) => this.handleClick(name, description)}
+          />
+        </div>
+        <div className="recipe-list">
+          <RecipeList
+            recipes = {this.state.recipes}
+          />
+        </div>
       </div>
     )
   }
