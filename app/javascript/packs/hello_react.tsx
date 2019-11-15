@@ -89,7 +89,7 @@ class Main extends React.Component<MainProps, MainState> {
     return (
       <div className="main">
         <div className="register">
-          <img src={Logo}  alt="ロゴ" />
+          <img src={Logo} alt="ロゴ" width="196"/>
           <div>
             chef: {this.props.chef}
           </div>
