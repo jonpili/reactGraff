@@ -1,24 +1,2 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## cookpadの完璧なクローンサイト
+![image](https://user-images.githubusercontent.com/38747501/68921560-7a943200-07bc-11ea-910a-5d9b8d8684b4.png)
