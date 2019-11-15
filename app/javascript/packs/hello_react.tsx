@@ -25,7 +25,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
   }
-
+  
   handleSubmit(event: { preventDefault: () => void; }) {
     axios.post('http://localhost:3000/posts', {
       name: this.state.name,
@@ -143,7 +143,7 @@ class Main extends React.Component<MainProps, MainState> {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/posts/getData')
+    axios.get('http://localhost:3000/posts')
     .then((results) => {
       console.log(results)
       this.setState({recipes: results.data})
