@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import './hello_react.css';
+import Logo from './logo.png';
 
 interface RegisterProps {
   onClick: (name: string, description: string) => void;
@@ -88,6 +89,7 @@ class Main extends React.Component<MainProps, MainState> {
     return (
       <div className="main">
         <div className="register">
+          <img src={Logo}  alt="ロゴ" />
           <div>
             chef: {this.props.chef}
           </div>
