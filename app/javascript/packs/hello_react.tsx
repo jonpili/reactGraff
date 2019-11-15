@@ -42,11 +42,11 @@ class Register extends React.Component<RegisterProps, RegisterState> {
     event.preventDefault();
   }
 
-  handleChangeName(event) {
+  handleChangeName(event: { target: { value: any; }; }) {
     this.setState({name: event.target.value});
   }
 
-  handleChangeDescription(event) {
+  handleChangeDescription(event: { target: { value: any; }; }) {
     this.setState({description: event.target.value});
   }
 
