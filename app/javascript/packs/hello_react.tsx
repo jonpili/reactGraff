@@ -55,13 +55,13 @@ class Register extends React.Component<RegisterProps, RegisterState> {
       <form onSubmit={this.handleSubmit}>
         <div>
           <label>
-            Name:
+            料理名：
             <input type="text" value={this.state.name} onChange={this.handleChangeName} />
           </label>
         </div>
         <div>
           <label>
-            Description:
+            作り方：
             <textarea value={this.state.description} onChange={this.handleChangeDescription} />
           </label>
         </div>
@@ -126,8 +126,8 @@ class Main extends React.Component<MainProps, MainState> {
       <div className="main">
         <div className="register">
           <img src={Logo} alt="ロゴ" width="196"/>
-          <div>
-            Chef: {this.props.chef}
+          <div className="chef">
+            作成者： {this.props.chef}
           </div>
           <Register
             onClick = {(name, description) => this.handleClick(name, description)}
