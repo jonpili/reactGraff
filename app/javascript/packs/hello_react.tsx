@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import './hello_react.css';
+import axios from 'axios';
+
 import Logo from './logo.png';
 
 interface RegisterProps {
@@ -70,7 +72,7 @@ class Main extends React.Component<MainProps, MainState> {
   constructor(props: Readonly<MainProps>) {
     super(props);
     this.state = {
-      recipes: [{name: 'オムライス', description: '卵でつつむ'}]
+      recipes: []
     };
   }
 
@@ -104,6 +106,17 @@ class Main extends React.Component<MainProps, MainState> {
         </div>
       </div>
     )
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:3000/posts/getData')
+    .then((results) => {
+      console.log(results)
+      this.setState({recipes: results.data})
+    })
+    .catch((data) =>{
+      console.log(data)
+    })
   }
 }
 
