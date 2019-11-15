@@ -9,30 +9,64 @@ interface RegisterProps {
   onClick: (name: string, description: string) => void;
 }
 
-class Register extends React.Component<RegisterProps, {}> {
+interface RegisterState {
+  name: string;
+  description: string;
+}
+
+class Register extends React.Component<RegisterProps, RegisterState> {
+  constructor(props: Readonly<RegisterProps>) {
+    super(props)
+    this.state = {
+      name: '',
+      description: ''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeName = this.handleChangeName.bind(this);
+    this.handleChangeDescription = this.handleChangeDescription.bind(this);
+  }
+
+  handleSubmit(event: { preventDefault: () => void; }) {
+    axios.post('http://localhost:3000/posts', {
+      name: this.state.name,
+      description: this.state.description
+    })
+    .then((result) => {
+      console.log(result)
+      this.props.onClick(this.state.name, this.state.description)
+      this.setState({name: '', description: ''});
+    })
+    .catch((data) => {
+      console.log(data)
+    })
+    event.preventDefault();
+  }
+
+  handleChangeName(event) {
+    this.setState({name: event.target.value});
+  }
+
+  handleChangeDescription(event) {
+    this.setState({description: event.target.value});
+  }
+
   render() {
     return (
-      // <form>
-      //   <div>
-      //     <label>
-      //       Name:
-      //       <input type="text" name="name" />
-      //     </label>
-      //   </div>
-      //   <div>
-      //     <label>
-      //       Description:
-      //       <textarea name="description" />
-      //     </label>
-      //   </div>
-      //   <input type="submit" value="Submit" />
-      //   <button value="confirm" onClick={() => this.props.onClick('おにぎり', '愛でにぎる')}>レシピの確認</button>
-      //   <div>name: {this.props.name}</div>
-      //   <div>description: {this.props.description}</div>
-      // </form>
-      <div>
-        <button onClick={() => this.props.onClick('おにぎり', '愛でにぎる')}>レシピの追加</button>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <label>
+            Name:
+            <input type="text" value={this.state.name} onChange={this.handleChangeName} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Description:
+            <textarea value={this.state.description} onChange={this.handleChangeDescription} />
+          </label>
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
     )
   }
 }
@@ -93,7 +127,7 @@ class Main extends React.Component<MainProps, MainState> {
         <div className="register">
           <img src={Logo} alt="ロゴ" width="196"/>
           <div>
-            chef: {this.props.chef}
+            Chef: {this.props.chef}
           </div>
           <Register
             onClick = {(name, description) => this.handleClick(name, description)}
